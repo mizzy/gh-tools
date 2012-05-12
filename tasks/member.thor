@@ -15,6 +15,28 @@ class Member < GhTools
     publicize_member(organization, user) if options.public
   end
 
+  desc 'bulk_add', 'Add members to a origanization'
+  method_options organization: :string,
+                 team:         :string,
+                 file:         :string,
+                 public:       :boolean
+  def bulk_add
+    organization = options.organization
+    team         = options.team
+
+    team    = find_team(organization, team)
+    members = find_team_members(team)
+
+    File.open(options.file) do |f|
+      while user = f.gets
+        user.strip!
+        unless members.include?(user)
+          puts "Adding #{user} ..."
+          add_team_member(team, user)
+        end
+      end
+    end
+  end
 
   desc 'remove', 'Remove a member from a organization'
   method_options organization: :string,
