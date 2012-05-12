@@ -76,7 +76,7 @@ class Member < GhTools
 
     members_to_remove = dest_members - src_members
     members_to_remove.each do |member|
-      puts "thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}"
+      puts "Syncing #{member} from #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
       `thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}`
     end
 
