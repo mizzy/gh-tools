@@ -29,4 +29,35 @@ class Member < GhTools
     remove_team_member(team, user)
   end
 
+  desc 'sync', 'sync members from one team to another'
+  method_options srcorg:   :string,
+                 srcteam:  :string,
+                 destorg:  :string,
+                 destteam: :string
+  def sync
+    src_org   = options.srcorg
+    src_team  = options.srcteam
+    dest_org  = options.destorg
+    dest_team = options.destteam
+
+    src_team    = find_team(src_org, src_team)
+    src_members = find_team_members(src_team)
+
+    dest_team    = find_team(dest_org, dest_team)
+    dest_members = find_team_members(dest_team)
+
+    members_to_add = src_members - dest_members
+    members_to_add.each do |member|
+      puts "thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}"
+      `thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}`
+    end
+
+    members_to_remove = dest_members - src_members
+    members_to_remove.each do |member|
+      puts "thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}"
+      `thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}`
+    end
+
+  end
+
 end

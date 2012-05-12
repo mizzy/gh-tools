@@ -35,6 +35,14 @@ class GhTools < Thor
     octokit.publicize_member(organization, user)
   end
 
+  def find_team_members(team)
+    members = []
+    octokit.team_members(team.id).each do |member|
+      members << member.login
+    end
+    members.sort
+  end
+
 end
 
 ::Octokit::Client.send(:define_method, 'publicize_member') do |organization, user|
