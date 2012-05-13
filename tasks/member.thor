@@ -70,13 +70,13 @@ class Member < GhTools
 
     members_to_add = src_members - dest_members
     members_to_add.each do |member|
-      puts "thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}"
+      puts "Adding #{member} of #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
       `thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}`
     end
 
     members_to_remove = dest_members - src_members
     members_to_remove.each do |member|
-      puts "Syncing #{member} from #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
+      puts "Rmoving #{member} of #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
       `thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}`
     end
 
