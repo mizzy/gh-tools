@@ -33,6 +33,7 @@ class Member < GhTools
         unless members.include?(user)
           puts "Adding #{user} ..."
           add_team_member(team, user)
+          publicize_member(organization, user) if options.public
         end
       end
     end
