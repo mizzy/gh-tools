@@ -11,6 +11,7 @@ class Member < GhTools
     user         = options.user
 
     team = find_team(organization, team)
+    puts "Adding #{user} to #{team} of #{organization} ..."
     add_team_member(team, user)
     publicize_member(organization, user) if options.public
   end
@@ -31,7 +32,7 @@ class Member < GhTools
       while user = f.gets
         user.strip!
         unless members.include?(user)
-          puts "Adding #{user} ..."
+          puts "Adding #{user} to #{organization}/#{team.name} ..."
           add_team_member(team, user)
           publicize_member(organization, user) if options.public
         end
@@ -49,6 +50,7 @@ class Member < GhTools
     user         = options.user
 
     team = find_team(organization, team)
+    puts "Removing #{user} #{organization}/#{team.name} ..."
     remove_team_member(team, user)
   end
 
