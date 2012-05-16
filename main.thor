@@ -3,6 +3,8 @@
 require 'bundler/setup'
 require 'pit'
 require 'octokit'
+require 'net/https'
+require 'uri'
 
 class GhTools < Thor
   private
@@ -32,7 +34,11 @@ class GhTools < Thor
   end
 
   def publicize_member(organization, user)
-    octokit.publicize_member(organization, user)
+    octokit.publicize_membership(organization, user)
+  end
+
+  def unpublicize_member(organization, user)
+    octokit.unpublicize_membership(organization, user)
   end
 
   def find_team_members(team)
@@ -43,11 +49,19 @@ class GhTools < Thor
     members.sort
   end
 
-end
-
-::Octokit::Client.send(:define_method, 'publicize_member') do |organization, user|
-  begin
-    put("orgs/#{organization}/public_members/#{user}")
-  rescue
+  def find_organization_members(organization)
+    octokit.organization_members(organization)
   end
+
+  def have_avatar?(url)
+    url = URI.parse(url)
+    https = Net::HTTP.new(url.host)
+    res = https.head(url.path + '?' + url.query)
+    if res.code == "200"
+      return true
+    else
+      return false
+    end
+  end
+
 end

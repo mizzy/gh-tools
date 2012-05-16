@@ -54,6 +54,35 @@ class Member < GhTools
     remove_team_member(team, user)
   end
 
+  desc 'unpublicize', "Unpublicize a users's membership"
+  method_options organization: :string,
+                 user:         :string
+  def unpublicize
+    unpublicize_member(options.organization, options.user)
+  end
+
+  desc 'publicize', "Publicize a users's membership"
+  method_options organization: :string,
+                 user:         :string
+  def publicize
+    publicize_member(options.organization, options.user)
+  end
+  
+  desc 'unpublicize_if_no_icons', 'Unpublicize users who do not have icon settings.'
+  method_options organization: :string
+  def unpublicize_if_no_icons
+    find_organization_members(options.organization).each do |member|
+      unless have_avatar?(member.avatar_url)
+        begin
+          puts member.login
+          unpublicize_member(options.organization, member.login)
+        rescue
+        end
+      end
+    end
+  end
+
+
   desc 'sync', 'sync members from one team to another'
   method_options srcorg:   :string,
                  srcteam:  :string,
