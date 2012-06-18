@@ -101,3 +101,5 @@ diyafi
 nagacy
 kwgc
 kosuke-tsuruda
+lovers-select
+HanakoMaeda
