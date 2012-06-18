@@ -5,3 +5,4 @@ thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-sqal
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-fanic --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-petit --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-30days --destteam=paperboy
+thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-heteml --destteam=paperboy
