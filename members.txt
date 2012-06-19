@@ -105,3 +105,4 @@ lovers-select
 HanakoMaeda
 kuboq
 sqale
+togama
