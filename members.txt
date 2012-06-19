@@ -104,3 +104,4 @@ kosuke-tsuruda
 lovers-select
 HanakoMaeda
 kuboq
+sqale
