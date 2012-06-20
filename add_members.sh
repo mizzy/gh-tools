@@ -7,3 +7,4 @@ thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-peti
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-30days --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-heteml --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-app --destteam=paperboy
+thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-ec-shien --destteam=paperboy
