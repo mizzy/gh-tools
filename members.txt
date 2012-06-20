@@ -107,3 +107,6 @@ kuboq
 sqale
 togama
 sujii
+hiraki
+harunahiruma
+
