@@ -117,3 +117,4 @@ yurihoppy
 sagawaffle
 uxul
 hamaman
+fanic-dev
