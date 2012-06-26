@@ -28,7 +28,7 @@ $ thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-sq
 
 ----
 
-# ペパボの人向け READMD
+# ペパボの人向け README
 
 ## paperboy-all 入りたい！
 
