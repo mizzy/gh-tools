@@ -8,3 +8,4 @@ thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-30da
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-heteml --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-app --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-ec-shien --destteam=paperboy
+thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-minne --destteam=paperboy

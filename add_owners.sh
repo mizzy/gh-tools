@@ -1,7 +1,7 @@
 #!/bin/sh
 
 owners="mizzy kentaro hsbt"
-orgs="all sqale fanic petit 30days heteml app ec-shien"
+orgs="all sqale fanic petit 30days heteml app ec-shien minne"
 
 for owner in $owners
 do
