@@ -9,3 +9,5 @@ thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-hete
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-app --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-ec-shien --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-minne --destteam=paperboy
+thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-jugemcart --destteam=paperboy
+thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-muumuu-domain --destteam=paperboy
