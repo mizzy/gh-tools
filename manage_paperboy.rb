@@ -31,7 +31,3 @@ octokit.orgs.each do |org|
   end
 
 end
-
-
-
-
