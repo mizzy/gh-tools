@@ -10,10 +10,14 @@ class Member < GhTools
     team         = options.team
     user         = options.user
 
-    team = find_team(organization, team)
-    puts "Adding #{user} to #{team} of #{organization} ..."
-    add_team_member(team, user)
-    publicize_member(organization, user) if options.public
+    team    = find_team(organization, team)
+    members = find_team_members(team)
+
+    unless members.include?(user)
+      puts "Adding #{user} to #{team} of #{organization} ..."
+      add_team_member(team, user)
+      publicize_member(organization, user) if options.public
+    end
   end
 
   desc 'bulk_add', 'Add members to a origanization'
