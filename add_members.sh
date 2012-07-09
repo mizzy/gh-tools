@@ -11,3 +11,4 @@ thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-ec-
 thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-minne --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-jugemcart --destteam=paperboy
 thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-muumuu-domain --destteam=paperboy
+thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-kyoto --destteam=paperboy
