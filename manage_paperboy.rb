@@ -14,6 +14,7 @@ end
 octokit.orgs.each do |org|
   org = org.login
   next unless org.match(/^paperboy-.*/)
+  puts "Processing #{org} ..."
 
   paperboy_team = nil
   octokit.org_teams(org).each do |team|
@@ -23,10 +24,12 @@ octokit.orgs.each do |org|
   end
 
   unless paperboy_team
-    # create team paperboy unless it exists
+    puts "Creating team paperboy ..."
+    octokit.create_team(org, { name: 'paperboy', permission: 'pull' })
   end
 
   octokit.org_repos(org, { type: 'private' }).each do |repo|
+    puts "Adding #{repo.full_name} to paperboy ..."
     octokit.add_team_repo(paperboy_team.id, repo.full_name)
   end
 
