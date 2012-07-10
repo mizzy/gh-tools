@@ -34,16 +34,26 @@ $ thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-sq
 
 paperboy-all に入りたい方は、GitHub アカウント名を mizzy, hsbt, antipop のいずれかへお知らせください。
 
-または、[paperboy-all/gh-tools](https://github.com/paperboy-all/gh-tools) の members.txt に GitHub アカウント名を追記して pullreq してください。(mizzy/gh-tools の方ではないのでご注意を。)
+または、[paperboy-all/gh-tools](https://github.com/paperboy-all/gh-tools) の paperboy.txt に GitHub アカウント名を追記して pullreq してください。(mizzy/gh-tools の方ではないのでご注意を。)
 
 paperboy-all に入ると、他のペパボ組織アカウント(paperboy-fanic, paperboy-sqale など)内の情報を参照できるようになります。
 
 ## 管理者向け
 
-ペパボ組織アカウントすべての Owners に所属してる人は、以下のように実行することで、members.txt 内のユーザを、paperboy-all に追加し、さらに各ペパボ組織アカウントの Pull Only なチームに同期することができます。
+ペパボ組織アカウントすべての Owners に所属してる人は
 
 ```
-$ ./add_members.sh members.txt
+$ ./manage_paperboy.rb
 ```
+
+を実行することで
+
+ * paperboy.txt 内のユーザを paperboy-all に追加
+ * 各ペパボ組織アカウントにて
+   * paperboy チームがなければ、Pull Only な paperboy チームを追加
+   * 組織内の private repo をすべて、paperboy チームがアクセスできる repo につっこむ
+   * paperboy-all のメンバーを paperboy チームに同期
+
+といった処理ができます。
 
 アカウントの追加依頼や、追加 pullreq が来たら、このコマンドで対応してください。

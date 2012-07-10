@@ -11,6 +11,8 @@ def octokit
   Octokit::Client.new(:login => config['username'], :password => config['password'])
 end
 
+puts `thor member:bulk_add --file=paperboy.txt --organization=paperboy-all --team=paperboy --public`
+
 octokit.orgs.each do |org|
   org = org.login
   next unless org.match(/^paperboy-.*/)
@@ -31,6 +33,10 @@ octokit.orgs.each do |org|
   octokit.org_repos(org, { type: 'private' }).each do |repo|
     puts "Adding #{repo.full_name} to paperboy ..."
     octokit.add_team_repo(paperboy_team.id, repo.full_name)
+  end
+
+  if org != 'paperboy-all'
+    `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=#{org} --destteam=paperboy`
   end
 
 end
