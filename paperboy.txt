@@ -145,3 +145,5 @@ yomejp
 croud1234
 Takehiro-Adachi
 gyotoku
+norizo
+sorahoderi
