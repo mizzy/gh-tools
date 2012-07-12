@@ -13,10 +13,18 @@ end
 
 puts `thor member:bulk_add --file=paperboy.txt --organization=paperboy-all --team=paperboy --public`
 
+puts `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-all --destteam=paperboy-rw`
+
+owners = %w(mizzy kentaro hsbt)
+
 octokit.orgs.each do |org|
   org = org.login
   next unless org.match(/^paperboy-.*/)
   puts "Processing #{org} ..."
+
+  owners.each do |owner|
+    puts `thor member:add --user=#{owner} --organization=#{org} --team=Owners`
+  end
 
   paperboy_team = nil
   octokit.org_teams(org).each do |team|
@@ -36,7 +44,7 @@ octokit.orgs.each do |org|
   end
 
   if org != 'paperboy-all'
-    `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=#{org} --destteam=paperboy`
+    puts `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=#{org} --destteam=paperboy`
   end
 
 end
