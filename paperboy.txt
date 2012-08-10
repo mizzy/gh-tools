@@ -166,3 +166,5 @@ misyobun
 saopi
 umako
 kihaco
+pepabonosatoshi
+nishiibe
