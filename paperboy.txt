@@ -168,3 +168,5 @@ umako
 kihaco
 pepabonosatoshi
 nishiibe
+gyugyu
+wu-tang
