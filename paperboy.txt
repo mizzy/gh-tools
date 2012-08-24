@@ -31,7 +31,7 @@ pplog
 linyows
 morygonzalez
 Atrac613
-hythsh
+gloverjp
 mizzy
 hsbt
 kentaro
@@ -171,3 +171,4 @@ nishiibe
 gyugyu
 wu-tang
 sakairi
+lolipop-dev
