@@ -33,8 +33,8 @@ class Member < GhTools
     members = find_team_members(team)
 
     File.open(options.file) do |f|
-      while user = f.gets
-        user.strip!
+      while line = f.gets
+        user = line.split(/\s+/)[0]
         unless members.include?(user)
           puts "Adding #{user} to #{organization}/#{team.name} ..."
           add_team_member(team, user)
