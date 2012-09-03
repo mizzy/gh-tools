@@ -18,7 +18,7 @@ def octokit
   Octokit::Client.new(:login => config['username'], :password => config['password'])
 end
 
-puts `thor member:bulk_add --file=paperboy.txt --organization=paperboy-all --team=paperboy --public`
+puts `thor member:bulk_add --file=#{file} --organization=paperboy-all --team=paperboy --public`
 
 puts `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-all --destteam=paperboy-rw`
 
