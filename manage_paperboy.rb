@@ -3,6 +3,13 @@
 require 'pit'
 require 'octokit'
 
+file = ARGV[0]
+
+if ! file
+  puts "Usage #{$0} file"
+  exit
+end
+
 def octokit
   config = Pit.get('github', :require => {
                      'username' => 'Your user name of GitHub',
@@ -15,7 +22,7 @@ puts `thor member:bulk_add --file=paperboy.txt --organization=paperboy-all --tea
 
 puts `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-all --destteam=paperboy-rw`
 
-owners = %w(mizzy kentaro hsbt)
+owners = %w(mizzy kentaro hsbt kuboq)
 
 octokit.orgs.each do |org|
   org = org.login

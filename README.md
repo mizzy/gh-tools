@@ -34,7 +34,7 @@ $ thor member:sync --srcorg=paperboy-all --srcteam=Members --destorg=paperboy-sq
 
 paperboy-all に入りたい方は、GitHub アカウント名を mizzy, hsbt, antipop のいずれかへお知らせください。
 
-または、[paperboy-all/gh-tools](https://github.com/paperboy-all/gh-tools) の paperboy.txt に GitHub アカウント名を追記して pullreq してください。(mizzy/gh-tools の方ではないのでご注意を。)
+または、[paperboy-all/all](https://github.com/paperboy-all/all) の github/members.txt に GitHub アカウント名を追記して pullreq してください。
 
 paperboy-all に入ると、他のペパボ組織アカウント(paperboy-fanic, paperboy-sqale など)内の情報を参照できるようになります。
 
