@@ -43,12 +43,12 @@ paperboy-all に入ると、他のペパボ組織アカウント(paperboy-fanic,
 ペパボ組織アカウントすべての Owners に所属してる人は
 
 ```
-$ ./manage_paperboy.rb
+$ ./manage_paperboy.rb members.txt
 ```
 
 を実行することで
 
- * paperboy.txt 内のユーザを paperboy-all に追加
+ * members.txt 内のユーザを paperboy-all に追加
  * 各ペパボ組織アカウントにて
    * paperboy チームがなければ、Pull Only な paperboy チームを追加
    * 組織内の private repo をすべて、paperboy チームがアクセスできる repo につっこむ
