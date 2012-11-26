@@ -40,7 +40,9 @@ paperboy-all に入ると、他のペパボ組織アカウント(paperboy-fanic,
 
 ## 管理者向け
 
-ペパボ組織アカウントすべての Owners に所属してる人は
+members.txt を pull ＆ メンバー登録スクリプトの実行を cron で定期的（10分間隔）に行っているので、paperboy-all/all の master ブランチ にある github/members.txt を更新すれば、自動でメンバーに追加されます。
+
+手動で行う場合には、
 
 ```
 $ ./manage_paperboy.rb members.txt
@@ -54,6 +56,6 @@ $ ./manage_paperboy.rb members.txt
    * 組織内の private repo をすべて、paperboy チームがアクセスできる repo につっこむ
    * paperboy-all のメンバーを paperboy チームに同期
 
-といった処理ができます。
+といった処理ができます。（ただし、各ペパボ組織アカウントに Owner 権限を持ってる必要があります。）
 
 アカウントの追加依頼や、追加 pullreq が来たら、このコマンドで対応してください。
