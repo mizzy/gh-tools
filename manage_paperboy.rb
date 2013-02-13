@@ -18,7 +18,7 @@ def octokit
   Octokit::Client.new(:login => config['username'], :password => config['password'])
 end
 
-puts `thor member:bulk_add --file=#{file} --organization=paperboy-all --team=paperboy --public`
+puts `thor member:bulk_add --file=#{file} --organization=paperboy-all --team=paperboy`
 
 puts `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-all --destteam=paperboy-rw`
 
@@ -34,10 +34,14 @@ octokit.orgs.each do |org|
   end
 
   paperboy_team = nil
+  deployer_team = nil
   octokit.org_teams(org).each do |team|
     if team.name.match(/^paperboy$/)
       paperboy_team = team
+    elsif team.name == 'Deployers'
+      deployer_team = team
     end
+
   end
 
   unless paperboy_team
@@ -48,6 +52,10 @@ octokit.orgs.each do |org|
   octokit.org_repos(org, { type: 'private' }).each do |repo|
     puts "Adding #{repo.full_name} to paperboy ..."
     octokit.add_team_repo(paperboy_team.id, repo.full_name)
+    if org == 'paperboy-all'
+      puts "Adding #{repo.full_name} to Deployers ..."
+      octokit.add_team_repo(deployer_team.id, repo.full_name)
+    end
   end
 
   if org != 'paperboy-all'
