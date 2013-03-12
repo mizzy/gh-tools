@@ -9,10 +9,22 @@ require 'uri'
 class GhTools < Thor
   private
   def octokit
-    config = Pit.get('github', :require => {
-                       'username' => 'Your user name of GitHub',
-                       'password' => 'Your password of GitHub',
-                     })
+    if options.ghe
+      config = Pit.get('ghe', :require => {
+                         'username' => 'Your user name of GitHub Enterprise',
+                         'password' => 'Your password of GitHub Enterprise',
+                       })
+      Octokit.configure do |c|
+        c.api_endpoint = 'http://ghe.tokyo.pb/api/v3'
+        c.web_endpoint = 'http://ghe.tokyo.pb/'
+      end
+    else
+      config = Pit.get('github', :require => {
+                         'username' => 'Your user name of GitHub',
+                         'password' => 'Your password of GitHub',
+                       })
+    end
+
     Octokit::Client.new(:login => config['username'], :password => config['password'])
   end
 

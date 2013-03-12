@@ -4,7 +4,8 @@ class Member < GhTools
   method_options organization: :string,
                  team:         :string,
                  user:         :string,
-                 public:       :boolean
+                 public:       :boolean,
+                 ghe:          :boolean
   def add
     organization = options.organization
     team         = options.team
@@ -14,7 +15,7 @@ class Member < GhTools
     members = find_team_members(team)
 
     unless members.include?(user)
-      puts "Adding #{user} to #{team} of #{organization} ..."
+      puts "Adding #{user} to #{team.name} of #{organization} ..."
       add_team_member(team, user)
       publicize_member(organization, user) if options.public
     end
@@ -47,7 +48,8 @@ class Member < GhTools
   desc 'remove', 'Remove a member from a organization'
   method_options organization: :string,
                  team:         :string,
-                 user:         :string
+                 user:         :string,
+                 ghe:          :boolean
   def remove
     organization = options.organization
     team         = options.team
@@ -91,7 +93,8 @@ class Member < GhTools
   method_options srcorg:   :string,
                  srcteam:  :string,
                  destorg:  :string,
-                 destteam: :string
+                 destteam: :string,
+                 ghe:      :boolean
   def sync
     src_org   = options.srcorg
     src_team  = options.srcteam
@@ -107,13 +110,13 @@ class Member < GhTools
     members_to_add = src_members - dest_members
     members_to_add.each do |member|
       puts "Adding #{member} of #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
-      `thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}`
+      `thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name} --ghe=#{options.ghe}`
     end
 
     members_to_remove = dest_members - src_members
     members_to_remove.each do |member|
       puts "Rmoving #{member} of #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
-      `thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name}`
+      `thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name} --ghe=#{options.ghe}`
     end
 
   end
