@@ -5,6 +5,8 @@ require 'octokit'
 
 exclude_users = %w(ghost)
 exclude_orgs  = %w(kiban)
+owners        = %w(mizzy antipop hsbt hiroya)
+
 
 Octokit.configure do |c|
   c.api_endpoint = 'http://ghe.tokyo.pb/api/v3'
@@ -38,6 +40,11 @@ puts `thor member:sync --srcorg=all --srcteam=paperboy --destorg=all --destteam=
 
 orgs.each do |org|
   paperboy_team = nil
+
+  owners.each do |owner|
+    puts `thor member:add --user=#{owner} --organization=#{org} --team=Owners --ghe`
+  end
+  
   octokit.org_teams(org).each do |team|
     if team.name.match(/^paperboy$/)
       paperboy_team = team
