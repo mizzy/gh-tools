@@ -100,6 +100,7 @@ class Member < GhTools
     src_team  = options.srcteam
     dest_org  = options.destorg
     dest_team = options.destteam
+    ghe       = options.ghe ? 'true' : 'false'
 
     src_team    = find_team(src_org, src_team)
     src_members = find_team_members(src_team)
@@ -110,13 +111,13 @@ class Member < GhTools
     members_to_add = src_members - dest_members
     members_to_add.each do |member|
       puts "Adding #{member} of #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
-      `thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name} --ghe=#{options.ghe}`
+      `thor member:add --user=#{member} --organization=#{dest_org} --team=#{dest_team.name} --ghe=#{ghe}`
     end
 
     members_to_remove = dest_members - src_members
     members_to_remove.each do |member|
       puts "Rmoving #{member} of #{src_org}/#{src_team.name} to #{dest_org}/#{dest_team.name} ..."
-      `thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name} --ghe=#{options.ghe}`
+      `thor member:remove --user=#{member} --organization=#{dest_org} --team=#{dest_team.name} --ghe=#{ghe}`
     end
 
   end
