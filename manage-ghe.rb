@@ -3,7 +3,7 @@
 require 'pit'
 require 'octokit'
 
-exclude_users = %w(ghost)
+exclude_users = %w(ghost myokoo)
 exclude_orgs  = %w(kiban)
 owners        = %w(mizzy antipop hsbt hiroya)
 
@@ -25,6 +25,7 @@ octokit.all_users.each do |user|
   next if exclude_users.include?(user.login)
   users << user.login
 end
+
 
 orgs = []
 octokit.orgs.each do |org|
