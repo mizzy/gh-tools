@@ -10,13 +10,11 @@ if ! file
   exit
 end
 
-def octokit
-  config = Pit.get('github', :require => {
-                     'username' => 'Your user name of GitHub',
-                     'password' => 'Your password of GitHub',
-                   })
-  Octokit::Client.new(:login => config['username'], :password => config['password'])
-end
+config = Pit.get('github', :require => {
+                   'username' => 'Your user name of GitHub',
+                   'password' => 'Your password of GitHub',
+                 })
+octokit = Octokit::Client.new(:login => config['username'], :password => config['password'])
 
 puts `thor member:bulk_add --file=#{file} --organization=paperboy-all --team=paperboy`
 
