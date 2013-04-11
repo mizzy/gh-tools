@@ -3,7 +3,7 @@
 require 'pit'
 require 'octokit'
 
-exclude_users = %w(ghost myokoo)
+exclude_users = %w(ghost myokoo harasou)
 exclude_orgs  = %w(kiban)
 owners        = %w(mizzy antipop hsbt hiroya)
 
@@ -34,7 +34,8 @@ octokit.orgs.each do |org|
 end
 
 users.each do |user|
-    puts `thor member:add --user=#{user} --organization=all --team=paperboy --ghe`
+  puts "Adding user #{user} to all/paperboy ..."
+  `thor member:add --user=#{user} --organization=all --team=paperboy --ghe`
 end
 
 puts `thor member:sync --srcorg=all --srcteam=paperboy --destorg=all --destteam=paperboy-rw --ghe`
