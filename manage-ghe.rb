@@ -19,13 +19,17 @@ config = Pit.get('ghe', :require => {
                  })
 octokit = Octokit::Client.new(:login => config['username'], :password => config['password'])
 
-users = []
-octokit.all_users.each do |user|
-  next unless user.type == 'User'
-  next if exclude_users.include?(user.login)
-  users << user.login
+users   = []
+last_id = 0
+loop do
+  octokit.all_users(:since => last_id).each do |user|
+    next unless user.type == 'User'
+    next if exclude_users.include?(user.login)
+    users << { :id => user.id, :login => user.login }
+  end
+  break if last_id == users[-1][:id]
+  last_id = users[-1][:id]
 end
-
 
 orgs = []
 octokit.orgs.each do |org|
@@ -34,6 +38,7 @@ octokit.orgs.each do |org|
 end
 
 users.each do |user|
+  user = user[:login]
   puts "Adding user #{user} to all/paperboy ..."
   `thor member:add --user=#{user} --organization=all --team=paperboy --ghe`
 end
