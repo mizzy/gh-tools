@@ -64,6 +64,7 @@ orgs.each do |org|
   end
 
   octokit.org_repos(org).each do |repo|
+    next if repo.full_name.match(/\-secret$/)
     puts "Adding #{repo.full_name} to paperboy ..."
     octokit.add_team_repo(paperboy_team.id, repo.full_name)
   end
