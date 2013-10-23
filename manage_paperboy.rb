@@ -20,7 +20,7 @@ puts `thor member:bulk_add --file=#{file} --organization=paperboy-all --team=pap
 
 puts `thor member:sync --srcorg=paperboy-all --srcteam=paperboy --destorg=paperboy-all --destteam=paperboy-rw`
 
-owners = %w(mizzy kentaro hsbt kuboq)
+owners = %w(mizzy kentaro hsbt kuboq lamanotrama udzura)
 
 octokit.orgs.each do |org|
   org = org.login

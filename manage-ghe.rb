@@ -5,7 +5,7 @@ require 'octokit'
 
 exclude_users = %w(ghost myokoo harasou)
 exclude_orgs  = %w(kiban)
-owners        = %w(mizzy antipop hsbt hiroya)
+owners        = %w(mizzy antipop hsbt hiroya lamanotrama udzura)
 
 
 Octokit.configure do |c|
