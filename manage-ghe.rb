@@ -3,9 +3,9 @@
 require 'pit'
 require 'octokit'
 
-exclude_users = %w(ghost myokoo harasou)
+exclude_users = %w(ghost myokoo harasou kitano)
 exclude_orgs  = %w(kiban)
-owners        = %w(mizzy antipop hsbt hiroya lamanotrama udzura)
+owners        = %w(mizzy antipop hsbt hiboma lamanotrama udzura)
 
 
 Octokit.configure do |c|
