@@ -11,8 +11,7 @@ class GhTools < Thor
   def octokit
     if options.ghe
       config = Pit.get('ghe', :require => {
-                         'username' => 'Your user name of GitHub Enterprise',
-                         'password' => 'Your password of GitHub Enterprise',
+                         'access_token' => 'Your access token of GitHub Enterprise',
                        })
       Octokit.configure do |c|
         c.api_endpoint = 'http://ghe.tokyo.pb/api/v3'
@@ -20,12 +19,11 @@ class GhTools < Thor
       end
     else
       config = Pit.get('github', :require => {
-                         'username' => 'Your user name of GitHub',
-                         'password' => 'Your password of GitHub',
+                         'access_token' => 'Your access token of GitHub',
                        })
     end
 
-    Octokit::Client.new(:login => config['username'], :password => config['password'])
+    Octokit::Client.new(:access_token => config['access_token'])
   end
 
   def find_team(organization, team)
