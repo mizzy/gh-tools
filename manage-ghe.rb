@@ -14,10 +14,9 @@ Octokit.configure do |c|
 end
 
 config = Pit.get('ghe', :require => {
-                   'username' => 'Your user name of GitHub Enterprise',
-                   'password' => 'Your password of GitHub Enterprise',
+                   'access_token' => 'Your access_token of GitHub Enterprise',
                  })
-octokit = Octokit::Client.new(:login => config['username'], :password => config['password'])
+octokit = Octokit::Client.new(:access_token => config['access_token'])
 
 users   = []
 last_id = 0
