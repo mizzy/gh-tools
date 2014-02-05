@@ -47,7 +47,7 @@ octokit.orgs.each do |org|
     octokit.create_team(org, { name: 'paperboy', permission: 'pull' })
   end
 
-  octokit.org_repos(org, { type: 'private' }).each do |repo|
+  octokit.org_repos(org, { type: 'private', per_page: 100 }).each do |repo|
     next if repo.full_name == 'recruit-secret'
     puts "Adding #{repo.full_name} to paperboy ..."
     octokit.add_team_repo(paperboy_team.id, repo.full_name)
